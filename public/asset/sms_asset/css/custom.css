@@ -1,0 +1,12 @@
+.label-section{
+    font-size: 21px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(214, 155, 77);
+    padding: 10px 20px;
+    font-weight: bold;
+}
+.thumbnail-details{
+    width: 300px;
+    height: auto;
+    border-radius: 10%;
+}
