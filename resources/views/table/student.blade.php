@@ -19,9 +19,11 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Class::{{ $gradename[0] }}<small>All Data</small></h2>
+                    @if (session('ROLE') == 'ADMIN')
                     <div class="clearfix">
                       <span style="padding-left: 900px;"><a href="{{ route('student.create') }}" class="btn btn-info">Add Student</a></span>
                     </div>
+                    @endif
                   </div>
 
                   <div class="x_content">

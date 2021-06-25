@@ -15,9 +15,11 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Nursary To 12<small>Schedule</small></h2>
+                    @if (session('ROLE') == 'ADMIN')
                     <div class="clearfix">
                       <span style="padding-left: 870px;"><a href="{{ route('schedule.create') }}" class="btn btn-info">Add Schedule</a></span>
-                    </div>
+                    </div>  
+                    @endif
                   </div>
 
                   <div class="x_content">

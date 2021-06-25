@@ -46,6 +46,8 @@ class TeacherController extends Controller
         $addteacher = Teacher::create([
             'fullname'=>$request->full_name,
             'address'=>$request->address,
+            'email'=>$request->email,
+            'password'=>$request->password,
             'phone_number'=>(int)$request->contact_number,
             'qualification'=>$request->acedamic_qualification,
             'sub_specialist'=>$request->subject_specialist,

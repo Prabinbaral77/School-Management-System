@@ -83,7 +83,27 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/student_attendee_list/{id}', [App\Http\Controllers\AttendenceController::class, 'list'])->name('student.attendence.list');
     Route::get('/student_attendeeSearch/{id}', [App\Http\Controllers\AttendenceController::class, 'search'])->name('student.attendenceSearch');
     
+    //library route 
+    Route::get('/library_home',[App\Http\Controllers\LibraryController::class, 'index'])->name('library.index');
+    Route::get('/new_book',[App\Http\Controllers\LibraryController::class, 'create'])->name('library.create');
+    Route::post('/store_book',[App\Http\Controllers\LibraryController::class, 'store'])->name('library.store');
+    Route::get('/book_delete/{id}',[App\Http\Controllers\LibraryController::class, 'destroy'])->name('book.delete');
+    Route::get('/book_edit/{id}',[App\Http\Controllers\LibraryController::class, 'edit'])->name('book.edit');
+    Route::post('/book_update/{id}',[App\Http\Controllers\LibraryController::class, 'update'])->name('book.update');
+
+    //Borrow Book
+    Route::get('/book_borrow',[App\Http\Controllers\LibraryController::class, 'borrow'])->name('book.borrow');
+    Route::post('/book_borrowed',[App\Http\Controllers\LibraryController::class, 'borrowed'])->name('book.borrowed');
+    Route::get('/borrowed_table',[App\Http\Controllers\LibraryController::class, 'borrowedTable'])->name('borrowed_table');
+
+    //Return Book
+    Route::get('/return_book/{id}',[App\Http\Controllers\LibraryController::class, 'returnBook'])->name('return_book');
+    Route::post('/returned_book',[App\Http\Controllers\LibraryController::class, 'bookReturned'])->name('book_returned');
+
+    //Report
+    Route::get('/report/{id}',[App\Http\Controllers\LibraryController::class, 'displayReport'])->name('borrow_report');
+    
 });
 
-//teacher access
+//teacher access 
 

@@ -52,6 +52,7 @@
                 <ul class="nav side-menu">
                   <li><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
                   </li>
+                  @if ( session('ROLE') == 'ADMIN')
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('student.create') }}">Student Form</a></li>
@@ -59,6 +60,8 @@
                       <li><a href="{{ route('staff_form') }}">Staff Form</a></li>
                     </ul>
                   </li>
+                  @endif
+                  
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('student.index') }}">All Students</a></li>
@@ -82,6 +85,9 @@
 
                     <li>
                       <a href="{{ route('attendence.index') }}"><i class="fa fa-edit"></i> Attendence Management</a>
+                   </li>
+                   <li>
+                      <a href="{{ route('library.index')}}"><i class="fa fa-book"></i> Library Management</a>
                    </li>
                   </li>
                 </ul>

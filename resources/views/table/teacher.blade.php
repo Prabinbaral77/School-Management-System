@@ -19,9 +19,12 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Teacher<small>All Data</small></h2>
+                    @if (session('ROLE') == 'ADMIN')
                     <div class="clearfix">
                       <span style="padding-left: 900px;"><a href="{{ route('teacher_form') }}" class="btn btn-info">Add Teacher</a></span>
                     </div>
+                    @endif
+                    
                   </div>
 
                   <div class="x_content">

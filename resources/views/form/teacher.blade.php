@@ -35,6 +35,22 @@
                             <input type="text" id="first-name" class="form-control " name="full_name">
                          </div>
                       </div>
+
+                      <div class="item form-group">
+                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Email<span class="required">*</span>
+                         </label>
+                         <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="email" class="form-control " name="email">
+                         </div>
+                      </div>
+
+                      <div class="item form-group">
+                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Password<span class="required">*</span>
+                         </label>
+                         <div class="col-md-6 col-sm-6 ">
+                            <input type="password" id="password" class="form-control " name="password">
+                         </div>
+                      </div>
                       
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Address</label>

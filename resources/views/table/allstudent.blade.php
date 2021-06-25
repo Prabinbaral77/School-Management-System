@@ -19,12 +19,15 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Class::All Students</h2>
+                    @if (session('ROLE') == 'ADMIN')
                     <div class="clearfix">
                       <span style="padding-left: 900px;"><a href="{{ route('student.create') }}" class="btn btn-info">Add Student</a></span>
                     </div>
+                    @endif
+                    
                   </div>
 
-                  <div class="x_content">
+                  <div class="x_content"> 
 
                    <h4><b>Shree Ratan Panday Secondary School</b></h4>
 
