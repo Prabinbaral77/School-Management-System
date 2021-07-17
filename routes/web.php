@@ -13,13 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
 });
+ */
+Route::get('/', [App\Http\Controllers\frontController::class, 'index'])->name('welcome_index');
+Route::get('/front/about_us', [App\Http\Controllers\frontController::class, 'about'])->name('front.about');
+Route::get('/front/mission_vision', [App\Http\Controllers\frontController::class, 'mission'])->name('front.mission');
+Route::get('/front/principle_message', [App\Http\Controllers\frontController::class, 'principleMessage'])->name('front.principleMessage');
+Route::get('/front/admission_procedure', [App\Http\Controllers\frontController::class, 'admissionProcedure'])->name('front.admissionProcedure');
+Route::get('/front/facilities', [App\Http\Controllers\frontController::class, 'facilities'])->name('front.facilities');
+Route::get('/front/teams', [App\Http\Controllers\frontController::class, 'teams'])->name('front.teams');
+Route::get('/front/photos', [App\Http\Controllers\frontController::class, 'photos'])->name('front.photos');
+Route::get('/front/contactUs', [App\Http\Controllers\frontController::class, 'contactUs'])->name('front.contactUs');
+Route::get('/front/newsEvent', [App\Http\Controllers\frontController::class, 'newsEvent'])->name('front.newsEvent');
+
 Route::get('/user_logout', function () {
     session()->forget('USER_NAME');
     session()->forget('USER_EMAIL');
-    return redirect()->route('login');
+    return redirect()->route('welcome_index');
 });
 
 Route::get('/login', [App\Http\Controllers\AdminauthController::class, 'index'])->name('login');
@@ -36,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('edit_student/{id}', [App\Http\Controllers\StudentController::class, 'edit'])->name('student.edit');
     Route::post('update_student/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
     Route::get('details_student/{id}', [App\Http\Controllers\StudentController::class, 'studentdetail'])->name('singlestudent.detail');
+    Route::post('/student_search', [App\Http\Controllers\StudentController::class, 'search'])->name('student.search');
     
     Route::get('/teacher_form', [App\Http\Controllers\TeacherController::class, 'create'])->name('teacher_form');
     Route::post('/teacher_form_submit', [App\Http\Controllers\TeacherController::class, 'store'])->name('teacher.store');
@@ -90,7 +103,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/book_delete/{id}',[App\Http\Controllers\LibraryController::class, 'destroy'])->name('book.delete');
     Route::get('/book_edit/{id}',[App\Http\Controllers\LibraryController::class, 'edit'])->name('book.edit');
     Route::post('/book_update/{id}',[App\Http\Controllers\LibraryController::class, 'update'])->name('book.update');
-
+    Route::post('/book_search',[App\Http\Controllers\LibraryController::class, 'search'])->name('book.search');
+    
     //Borrow Book
     Route::get('/book_borrow',[App\Http\Controllers\LibraryController::class, 'borrow'])->name('book.borrow');
     Route::post('/book_borrowed',[App\Http\Controllers\LibraryController::class, 'borrowed'])->name('book.borrowed');
@@ -102,6 +116,21 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Report
     Route::get('/report/{id}',[App\Http\Controllers\LibraryController::class, 'displayReport'])->name('borrow_report');
+    Route::get('/studentAttendence/{id}',[App\Http\Controllers\LibraryController::class, 'attendenceReport'])->name('attendence_report');
+    
+    //notices
+    Route::get('/notices',[App\Http\Controllers\NoticeController::class, 'index'])->name('notice.table');
+    Route::get('/notice_form',[App\Http\Controllers\NoticeController::class, 'create'])->name('notice.create');
+    Route::post('/notice_form_submit',[App\Http\Controllers\NoticeController::class, 'store'])->name('notice.store');
+    Route::get('/notice_distroy/{id}',[App\Http\Controllers\NoticeController::class, 'destroy'])->name('notice.distroy'); 
+
+    //admin crud
+    Route::get('/admin_table',[App\Http\Controllers\AdminauthController::class, 'show'])->name('admin.table'); 
+    Route::get('/admin_form',[App\Http\Controllers\AdminauthController::class, 'create'])->name('admin.create'); 
+    Route::post('/admin_form_store',[App\Http\Controllers\AdminauthController::class, 'store'])->name('admin.store'); 
+    Route::get('/admin_destroy/{id}',[App\Http\Controllers\AdminauthController::class, 'destroy'])->name('admin.distroy'); 
+    Route::get('/admin_edit/{id}',[App\Http\Controllers\AdminauthController::class, 'edit'])->name('admin.edit'); 
+    Route::post('/admin_form_update/{id}',[App\Http\Controllers\AdminauthController::class, 'update'])->name('admin.update'); 
     
 });
 

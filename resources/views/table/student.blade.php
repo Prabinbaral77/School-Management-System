@@ -28,7 +28,7 @@
 
                   <div class="x_content">
 
-                   <h4><b>Shree Ratan Panday Secondary School</b></h4>
+                   <h4><b>{{$name}}</b></h4>
 
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
@@ -43,7 +43,7 @@
                             <th class="column-title">Guardian Name </th>
                             <th class="column-title">Contact No </th>
                             <th class="column-title">Date Of Birth</th>
-                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            <th class="column-title no-link last"><span class="nobr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -60,13 +60,14 @@
                                   </td>
                                   <td class=" ">{{ $allstd->roll_no }}</td>
                                   <td class=""><a><img src="{{ asset('storage/images/student/'.$allstd->thumbnail) }}" style="width: 40px;""></a></td>
-                                  <td class=" "><a href="{{ route('singlestudent.detail', $allstd->id) }}">{{ $allstd->full_name }}</a></td>
+                                  <td class=" ">{{ $allstd->full_name }}</td>
                                   <td class=" ">{{ $allstd->gurdian_name }}</td>
                                   <td class=" ">{{ $allstd->phone_number }}</td>
                                   <td class=" ">{{ $allstd->date_of_birth }}</td>
                                   <td class=" last">
                                     <a href="{{ route('student.edit', $allstd->id)}}" class="btn btn-primary">Edit</a>&nbsp &nbsp
-                                    <a href="{{ route('student.delete', $allstd->id)}}" class="btn btn-danger">Delete
+                                    <a href="{{ route('student.delete', $allstd->id)}}" class="btn btn-danger">Delete</a>&nbsp &nbsp
+                                    <a href="{{ route('singlestudent.detail', $allstd->id) }}" class="btn btn-info">Report
                                   </td>
                                 </tr>
                             @endforeach

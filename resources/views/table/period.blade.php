@@ -19,9 +19,12 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2><small>All Data</small></h2>
+                    @if (session('ROLE') == 'ADMIN')
                     <div class="clearfix">
                       <span style="padding-left: 900px;"><a href="{{ route('period.create') }}" class="btn btn-info">Add Period</a></span>
                     </div>
+                    @endif
+                    
                   </div>
 
                   <div class="x_content">

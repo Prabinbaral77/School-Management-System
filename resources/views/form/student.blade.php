@@ -41,7 +41,7 @@
                          <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">full Name <span {{-- class="required" --}}>*</span>
                          </label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="f-name" {{-- required="required" --}} class="form-control " name="f_name">
+                            <input autocomplete="off" type="text" id="f-name" {{-- required="required" --}} class="form-control " name="f_name">
                          </div>
                       </div>
 
@@ -49,7 +49,7 @@
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email<span {{-- class="required" --}}></span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                           <input type="email" id="email" {{-- required="required" --}} class="form-control " name="email">
+                           <input autocomplete="off"  type="email" id="email" {{-- required="required" --}} class="form-control " name="email">
                         </div>
                      </div>
 
@@ -67,25 +67,25 @@
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Roll No</label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="class" class="form-control" type="te   xt" name="roll_no" {{-- required="" --}}>
+                            <input autocomplete="off"  id="class" class="form-control" type="te   xt" name="roll_no" {{-- required="" --}}>
                          </div>
                       </div>
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Address</label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="class" class="form-control" type="text" name="address" {{-- required="" --}}>
+                            <input autocomplete="off"  id="class" class="form-control" type="text" name="address" {{-- required="" --}}>
                          </div>
                       </div>
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Guardian Name</label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="class" class="form-control" type="text" name="guardian_name" {{-- required="" --}}>
+                            <input autocomplete="off"  id="class" class="form-control" type="text" name="guardian_name" {{-- required="" --}}>
                          </div>
                       </div>
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Contact No</label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="class" class="form-control" type="text" name="contact" {{-- required="" --}}>
+                            <input autocomplete="off"  id="class" class="form-control" type="text" name="contact" {{-- required="" --}}>
                          </div>
                       </div>
                       <div class="item form-group">
@@ -93,10 +93,10 @@
                          <div class="col-md-6 col-sm-6 ">
                             <div id="gender" class="btn-group" data-toggle="buttons">
                                <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                               <input type="radio" name="gender" value="male" class="join-btn" > &nbsp; Male &nbsp;
+                               <input autocomplete="off"  type="radio" name="gender" value="male" class="join-btn" > &nbsp; Male &nbsp;
                                </label>
                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                               <input type="radio" name="gender" value="female" class="join-btn"> Female
+                               <input autocomplete="off"  type="radio" name="gender" value="female" class="join-btn"> Female
                                </label>
                             </div>
                          </div>
@@ -104,14 +104,14 @@
                       <div class="item form-group">
                          <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Student Photo</label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="class" class="form-control" type="file" name="thumbnail" {{-- required="" --}}>
+                            <input autocomplete="off"  id="class" class="form-control" type="file" name="thumbnail" {{-- required="" --}}>
                          </div>
                       </div>
                       <div class="item form-group">
                          <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span {{-- class="required" --}}>*</span>
                          </label>
                          <div class="col-md-6 col-sm-6 ">
-                            <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" {{-- required="required" --}} type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" {{-- required="" --}} name="dob">
+                            <input autocomplete="off"  id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" {{-- required="required" --}} type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" {{-- required="" --}} name="dob">
                             <script>
                                function timeFunctionLong(input) {
                                    setTimeout(function() {

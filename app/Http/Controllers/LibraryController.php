@@ -195,17 +195,55 @@ class LibraryController extends Controller
         $bookReturned = DB::table('borrow_book')->where('id', $id)->get();
         $students = Student::all();
         $books = Library::all();
-        return view('library.return')->with([
+        
+        //borrowed books table
+        $book_id = $bookReturned[0]->book_id;
+        $student_id = $bookReturned[0]->student_id;
+        $quantity = $bookReturned[0]->qty;
+    
+
+        //total remainning  books
+        $remainningBook = DB::table('libraries')->where('id', $book_id)->get();
+        $remainningBookQuantity = $remainningBook[0]->quantity;
+
+        //total books after return
+        $totalQuantity = $quantity + $remainningBookQuantity;
+
+        $book = Library::find($book_id);
+        if($book) {
+            $book->quantity = $totalQuantity;
+            $book->save();
+        }
+
+        $borrowedBookDistroy = DB::table('borrow_book')->where([
+            'book_id'=> $book_id,
+            'student_id'=> $student_id,
+        ])->delete();
+        
+
+        return redirect()->route('library.index')->with('msg', 'Book returned successfully');
+        /* dd($book);
+        if($quantity > 0) {
+            echo $remainningBookQuantity;
+        }
+ */
+       // dd($book_id, $student_id, $quantity);
+        /* return view('library.return')->with([
             'students' => $students,
             'books' => $books,
             'bookReturned' => $bookReturned
-        ]);
+        ]); */
     }
 
-    
-    public function bookReturned()
+    public function search(Request $request, Library $library)
     {
-        
+        $totalStudents = DB::table('students')->get();
+        $searchItem = $request->input('search');
+        $allBook = DB::table('libraries')->where('bookname', 'LIKE', "%{$searchItem}%")->get();
+        return view('library.search-table')->with([
+            'allBook' => $allBook,
+            'totalStudent' => $totalStudents
+        ]);
     }
 
     public function displayReport($id)
@@ -215,6 +253,11 @@ class LibraryController extends Controller
         return $pdf->download('report.pdf');
     }
 
-   
+    public function attendenceReport($id)
+    {
+        $data = DB::table('attendences')->where('id', $id)->get();
+        $pdf = PDF::loadView('report.student', compact('data'));
+        return $pdf->download('report.pdf');
+    }
 
  }

@@ -18,7 +18,11 @@ class AttendenceController extends Controller
     public function index()
     {
         //$gradename = Grade::all();
-        return view('attendence.student');
+        if (session('ROLE') == 'ADMIN'){
+            return view('attendence.admin.student');
+        }else{
+            return view('attendence.student');
+        }
     }
 
     /**

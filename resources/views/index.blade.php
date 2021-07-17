@@ -239,6 +239,17 @@
                         <a class="title special_chars" href="{{ route('staff.index') }}">Staff</a>
                         <p>Detail about Staff.</p>
                       </div>
+                    </article><br>
+
+                    <article class="media event ">
+                      <a class="pull-left date ">
+                        <p class="month">Staff</p>
+                        <p class="day">.</p>
+                      </a>
+                      <div class="media-body">
+                        <a class="title special_chars" href="{{ route('admin.table') }}">Admin</a>
+                        <p>Detail about Admin.</p>
+                      </div>
                     </article>
                   </div>
                 </div>

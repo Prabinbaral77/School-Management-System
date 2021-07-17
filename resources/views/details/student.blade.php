@@ -26,6 +26,37 @@
                         <p class="label-section">Gurdian:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $detailStd[0]->gurdian_name }}</p>
                         <p class="label-section">Phone Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $detailStd[0]->phone_number }}</p>
                         <p class="label-section">Date Of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $detailStd[0]->date_of_birth }}</p>
+                        <div class="attendence-container">
+                        <h2 class="attendence-header">Attendance</h2>
+                        <table class="table table-striped">
+                           <thead>
+                              <tr>
+                                 <th>SN</th>
+                                 <th>Date</th>
+                                 <th>Attendence Status</th>
+                              </tr
+                           </thead>
+                           <tbody>
+                              @foreach($attendenceList as $key => $attendence)
+                              <tr>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{$attendence->attendence_date}}</td>
+                                    @if($attendence->attendence_status == 0)
+                                    <td class="text-danger font-weight-bold">Absent</td>
+                                    @else
+                                    <td class="text-success font-weight-bold">Present</td>
+                                    @endif
+                              </tr>
+                              @endforeach
+                              <tr>
+                                 <td class="text-success font-weight-bold">Total present:{{$attendencePresent}} </td>
+                              </tr>
+                              <tr>
+                                 <td class="text-danger font-weight-bold">Total Absent: {{$attendenceAbsent}} </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        </div>
                     </div>
                     <div class="thumbnail">
                         <img src="{{ asset('storage/images/student/'.$detailStd[0]->thumbnail) }}" alt="student-thumbnail" class="thumbnail-details">

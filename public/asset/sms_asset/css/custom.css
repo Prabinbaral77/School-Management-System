@@ -2,11 +2,19 @@
     font-size: 21px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: rgb(214, 155, 77);
-    padding: 10px 20px;
+    padding: 0 20px;
     font-weight: bold;
 }
 .thumbnail-details{
     width: 300px;
     height: auto;
     border-radius: 10%;
+}
+.attendence-container{
+    text-align: center;
+    margin-left: 250px;
+}
+h2{
+    font-size:1.7rem;
+    font-weight:bold;
 }

@@ -17,7 +17,7 @@
              <div class="x_panel">
                 <div class="x_content">
                     <div class="col-md-8 col-sm-12">
-                        <h1 style="text-align:center;" style="font-family: Georgia, serif;"><b style="color: green;text-decoration: underline"; >{{ $details[0]->name }}</b></h1>
+                        <h1 style="text-align:left;" style="font-family: Georgia, serif;"><b style="color: green;text-decoration: underline"; >{{ $details[0]->name }}</b></h1>
                         <div style="margin-top: 60px">
                             <p class="label-section">Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <h3>{{ $details[0]->location }}</h3>
@@ -40,8 +40,10 @@
                         <img style="width:700px; height:auto; float:right; margin-top:-600px;" src="{{ asset('storage/images/school/'.$details[0]->thumbnail) }}" alt="student-thumbnail" class="thumbnail-details">
                     </div>
                 </div>
-                <a href="{{ route('schooldetail.edit',1) }}" class="btn btn-primary" style="float: right;">Edit</a>&nbsp &nbsp
-                                   
+                
+                @if (session('ROLE') == 'ADMIN')
+                    <a href="{{ route('schooldetail.edit',1) }}" class="btn btn-primary" style="float: right;">Edit</a>&nbsp &nbsp
+                @endif                   
              </div>
           </div>
        </div>

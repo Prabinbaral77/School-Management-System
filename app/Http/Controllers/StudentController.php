@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Attendence;
 use Illuminate\Http\Request;
 use App\Models\Grade;
 use App\Http\Requests\StudentValidationRequest;
@@ -21,20 +22,31 @@ class StudentController extends Controller
     public function index(Student $student)
     {
         $allStudents = Student::orderBy('full_name', 'asc')->get();
+
+        $details = DB::table('schooldetails')->get();
+        $name = $details[0]->name;
+        $name = trim($name, '""');
+
         return view('table.allstudent')->with([
             'allStudent' => $allStudents,
             'student' => $student,
+            'name' => $name,
         ]);
     }
 
     public function single(Student $student,$id)
     {
+        $details = DB::table('schooldetails')->get();
+        $name = $details[0]->name;
+        $name = trim($name, '""');
+
         $gradename = DB::table('grades')->where('id', $id)->pluck('name');
         $allStudents = DB::table('students')->where('grade_id',$id)->orderBy('roll_no', 'asc')->get();
         return view('table.student')->with([
             'allStudent' => $allStudents,
             'student' => $student,
             'gradename' => $gradename,
+            'name' => $name
         ]);
     }
 
@@ -69,6 +81,14 @@ class StudentController extends Controller
             'gender' => $request->input('gender'),
             'date_of_birth' => $request->input('dob'),
         );
+
+        //check email 
+        $existingEmail = Student::where('email', '=', $request->input('email'))->count();
+        
+        if($existingEmail !== 0) {
+            return redirect()->route('student.singletable',$studentdetail['grade_id'])->with('msg','Email already exists. Please try another one!!');
+        }
+
         if($request->has('thumbnail')){
             $extension = ".".$request->thumbnail->getClientOriginalExtension();
             $name = basename($request->thumbnail->getClientOriginalName(),$extension).time();
@@ -96,17 +116,31 @@ class StudentController extends Controller
             $receivingEmail = $studentdetail['email'];
             $receivingName = $studentdetail['full_name'];
            // dd($request->post());
+
+            //for sending mail
             $sendMail = Mail::to($receivingEmail)->send(new Mailsender($details));
+
+            //check roll number for particular class
+            $gradeId = $studentdetail['grade_id'];
+            $rollNo = $studentdetail['roll_no'];
+            $existingRollInGrade = Student::where([
+                'grade_id' => $gradeId,
+                'roll_no' => $rollNo
+            ])->count();
+            if($existingRollInGrade !== 0 ){
+                return redirect()->route('student.singletable',$studentdetail['grade_id'])->with('msg','RollNo already exists in this class. Please try another one!!');
+            }
+            
 
             $createStudent = Student::create($studentdetail);
 
             return redirect()->route('student.singletable',$studentdetail['grade_id'])->with('msg','Student has been Added Successfully!!');
             
-        }/* 
-       else {
+        }
+         /*else {
             Student::create($studentdetail);
             return redirect()->route('student.singletable',$studentdetail['grade_id'])->with('msg','Student has been Added Successfully!!');
-            } */
+        } */
     }
 
     /**
@@ -115,9 +149,21 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function search(Request $request, Student $student)
     {
-        //
+        $searchItem = $request->input('search');
+        $allStudents = Student::where('full_name', 'LIKE', "%{$searchItem}%")->get();
+    
+
+        $details = DB::table('schooldetails')->get();
+        $name = $details[0]->name;
+        $name = trim($name, '""');
+
+        return view('table.allstudent')->with([
+            'allStudent' => $allStudents,
+            'student' => $student,
+            'name' => $name,
+        ]);
     }
 
     /**
@@ -222,9 +268,24 @@ class StudentController extends Controller
         $detailStd = DB::table('students')->where('id', $id)->get();
         $gradeId = DB::table('students')->where('id', $id)->pluck('grade_id');
         $gradeName = DB::table('grades')->where('id',$gradeId[0])->pluck('name');
+
+        $attendenceList = Attendence::where('student_id', $id)->orderBy('attendence_date', 'asc')->get();
+        $attendencePresent = Attendence::where([
+            'student_id'=> $id,
+            'attendence_status' => 1
+        ])->count();
+
+        $attendenceAbsent = Attendence::where([
+            'student_id'=> $id,
+            'attendence_status' => 0
+        ])->count();
+
         return view('details.student')->with([
             'detailStd'=> $detailStd,
             'gradeName'=> $gradeName,
+            'attendenceList' => $attendenceList,
+            'attendencePresent' => $attendencePresent,
+            'attendenceAbsent' => $attendenceAbsent
         ]);
     }
 

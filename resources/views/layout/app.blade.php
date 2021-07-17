@@ -89,6 +89,10 @@
                    <li>
                       <a href="{{ route('library.index')}}"><i class="fa fa-book"></i> Library Management</a>
                    </li>
+                   <li>
+                      <a href="{{ route('notice.table')}}"><i class="fa fa-commenting"></i> Notice Management</a>
+                   </li>
+                   
                   </li>
                 </ul>
               </div>

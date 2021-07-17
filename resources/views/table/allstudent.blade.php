@@ -24,12 +24,18 @@
                       <span style="padding-left: 900px;"><a href="{{ route('student.create') }}" class="btn btn-info">Add Student</a></span>
                     </div>
                     @endif
-                    
+                    <form action="{{route('student.search')}}" method="post">
+                        @csrf
+                      <div style="margin-left:30%;">
+                          <input type="text" name="search" id="search" style="border-top:none; border-left: none; border-right: none;" placeholder="Enter Student Name" autocomplete="off" required>
+                          <button type="submit" class="btn btn-success btn-sm">Search Student</button></span>
+                      </div>
+                      </form>
                   </div>
 
                   <div class="x_content"> 
 
-                   <h4><b>Shree Ratan Panday Secondary School</b></h4>
+                   <h4><b>{{$name}}</b></h4>
 
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
@@ -53,13 +59,13 @@
 
                         <tbody>
                           @if (count($allStudent) >0)
-                              @foreach ($allStudent as $allstd)
+                              @foreach ($allStudent as $key => $allstd)
                         
                                 <tr class="even pointer">
                                   <td class="a-center ">
                                     <input type="checkbox" class="flat" name="table_records">
                                   </td>
-                                  <td class="">{{ $allstd->id }}</td>
+                                  <td class="">{{ ++$key }}</td>
                                   <td class=""><a><img src="{{ asset('storage/images/student/'.$allstd->thumbnail) }}" style="width: 40px;""></a></td>
                                   <td class=" "><a href="">{{ $allstd->full_name }}</a></td>
                                   <td class=" ">{{ $allstd->gurdian_name }}</td>

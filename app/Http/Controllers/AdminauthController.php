@@ -74,9 +74,24 @@ class AdminauthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function create(Request $request)
+    {
+        return view('admin.form');
+    }
+
     public function store(Request $request)
     {
-        //
+        $admindetail = array();
+        $admindetail['role_id'] = 1;
+        $admindetail['name'] = $request->input('name');
+        $admindetail['email'] = $request->input('email');
+        $admindetail['contact_no'] = $request->input('contact');
+        $admindetail['password'] = $request->input('password');
+        
+        $store = DB::table('users')->insert($admindetail);
+        if($store) {
+            return redirect()->route('admin.table');
+        }
     }
 
     /**
@@ -85,9 +100,11 @@ class AdminauthController extends Controller
      * @param  \App\Models\Adminauth  $adminauth
      * @return \Illuminate\Http\Response
      */
-    public function show(Adminauth $adminauth)
+    public function show()
     {
-        //
+        
+         $adminList = DB::table('users')->where('role_id', 1)->get();
+        return view('admin.table')->with('adminList', $adminList);
     }
 
     /**
@@ -96,9 +113,14 @@ class AdminauthController extends Controller
      * @param  \App\Models\Adminauth  $adminauth
      * @return \Illuminate\Http\Response
      */
-    public function edit(Adminauth $adminauth)
+    public function edit( $id)
     {
-        //
+        $details = DB::table('users')->where('id', $id)->get();
+        
+        return view('admin.edit')->with([
+            'details' => $details,
+            'id' => $id,
+        ]);
     }
 
     /**
@@ -108,9 +130,19 @@ class AdminauthController extends Controller
      * @param  \App\Models\Adminauth  $adminauth
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Adminauth $adminauth)
+    public function update(Request $request, $id)
     {
-        //
+        $admindetail = array();
+        $admindetail['role_id'] = 1;
+        $admindetail['name'] = $request->input('name');
+        $admindetail['email'] = $request->input('email');
+        $admindetail['contact_no'] = $request->input('contact');
+        $admindetail['password'] = $request->input('password');
+
+        $storeUpdate = DB::table('users')->where('id', $id)->update($admindetail);
+        if($storeUpdate) {
+            return redirect()->route('admin.table')->with('msg', 'Admin Updated Successfully!!');
+        }
     }
 
     /**
@@ -119,8 +151,12 @@ class AdminauthController extends Controller
      * @param  \App\Models\Adminauth  $adminauth
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adminauth $adminauth)
+    public function destroy($id)
     {
-        //
+        if(DB::table('users')->where('id',$id)->delete()){
+            return redirect()->back()->with('msg','Admin deleted Successfully!!');
+        }else{
+            return redirect()->back()->with('msg','Error in deleting Book!!');
+        }
     }
 }

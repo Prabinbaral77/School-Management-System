@@ -1,0 +1,153 @@
+.logo{
+    width: 90px;
+      margin:5px ;
+}
+.bg-theme{
+    padding: 0px;
+    background-color:#132f57;
+    outline-color: white;
+}
+.brand-logo{
+    width: 50px;
+    margin-left: 20px;
+    display: none;
+}
+.logo-head{
+    color: white;
+    margin-top: 30px;
+    font-weight: bold;
+    font-family: emoji;
+}
+.ico-icon{
+    margin-top: 20px;
+    position: absolute;
+    right: 0;
+    color: white;
+}
+.ico-icon .fab{
+    border: 1px solid gray;
+    width: 52px;
+    height: 52px;
+    background-color: white;
+    text-align: center;
+    border-radius: 100%;
+    padding: 10px;
+    color: darkslateblue;
+}
+.ico-icon .fab:hover{
+    width: 55px;
+    height: 55px;
+    border: none;
+    background-color: yellow
+    ;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+    margin-right: 110px;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: black;
+    background-color: #ffb516;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    background-color: #132f57;
+}
+
+.nabar-light .navbar-nav .nav-link{
+    color: white;
+}
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.outdoor-right{
+    text-align: center;
+    margin-left: 50%;
+}
+.outdoor-right h4{
+    color: blue;
+}
+.outdoor-right h5{
+    color: green;
+}
+.mrq{
+    text-align: center;
+}
+.mrq b 
+{
+    color: black;
+}
+.mrq h3{
+    color: darkcyan;
+}
+.get-btn{
+    color: darkred; 
+    padding: 10px 33px;
+    border: 1px solid darkslateblue;
+    font-weight: bold;
+}
+.get-btn:hover{
+    background-color: yellowgreen;
+    cursor: pointer;
+}
+.footer{
+    margin-top: 50px;
+    background-color: #132f57;
+    text-align: center;
+    color: white;
+    padding: 20px 0px;
+}
+/* about us page */
+.heading-about{
+    padding: 5px;
+    background-color: brown;
+    color: white;
+    margin-top: 15px;
+    text-align: center;
+}
+.img-about-style{
+    border: 10px solid #00c0d0;
+}
+/* mission and vision */
+.text-mission-vision{
+    background-color: #004456;
+    color: white;
+    padding: 14px;
+
+}
+.principle-mmg{
+    margin-top: 50px;
+    border: 10px solid gray;
+    border-radius: 19 px;
+
+}
+.teachers-img{
+    border: 2px solid gray;
+    border-radius: 100%;
+}
+
+
+@media only screen and (max-width:768px){
+    .ico-icon .fab{
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        font-size: 14px;
+        padding: 8px;
+    }
+    .logo-head{
+        margin-top: 23px;
+        font-size: 17px;
+    }
+    
+.navbar-light .navbar-nav .nav-link{
+    padding-left: 13px;
+    margin-right: 0px;
+}
+}
+.logo{
+    display: none;
+}
+.brand-logo{
+    display: block;
+}
